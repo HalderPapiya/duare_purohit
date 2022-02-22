@@ -19,7 +19,7 @@ class CreatePujaServicesTable extends Migration
             $table->bigInteger('pujaId');
             $table->string('service_name');
             $table->string('image');
-            $table->float('price', 5, 2);
+            $table->decimal('price', 10, 2);
             $table->tinyInteger('status')->default('1')->comment('1 = Active, 0 = Inactive');
             $table->softDeletes();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
