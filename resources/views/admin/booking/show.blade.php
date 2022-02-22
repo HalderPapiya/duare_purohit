@@ -69,7 +69,7 @@
                     <div class="tile-body">
                         <div class="form-group">
                             <label class="control-label" for="city"> City <span class="m-l-5 text-danger"> *</span></label>
-                            <input class="form-control" name="city" id="city" value="{{  $booking->city }} readOnly"/>
+                            <input class="form-control" name="city" id="city" value="{{  $booking->city }}" readOnly/>
                         </div>
                     </div>
                     <div class="tile-body">
