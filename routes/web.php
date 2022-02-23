@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\LoginController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,95 +15,110 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::middleware(['guest:admin'])->group(function () {
+        Route::get('/login', [LoginController::class, 'showLoginForm'])->name('admin.login');
+        Route::post('/login', [LoginController::class, 'login'])->name('login');
+    });
+    Route::middleware(['auth:admin'])->group(function () {
+        Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+        Route::get('dashboard', function () {
+            return view('admin.dashboard');
+        })->name('admin.dashboard');
+        Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/', function () {
-    return view('admin/dashboard');
-});
+        // ----------------category--------------
 
-// ----------------category--------------
+        Route::group(['prefix' => 'category'], function () {
+            Route::get('/', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('category.index');
+            Route::get('/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('category.create');
+            Route::post('/store', [App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('category.store');
+            Route::get('/edit/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('category.edit');
+            Route::post('/update/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('category.update');
+            Route::post('/updateStatus', [App\Http\Controllers\Admin\CategoryController::class, 'updateStatus'])->name('category.updateStatus');
+            Route::get('/delete/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('category.delete');
+        });
 
-Route::group(['prefix' => 'category'], function () {
-    Route::get('/', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('admin.category.index');
-    Route::get('/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('admin.category.create');
-    Route::post('/store', [App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('admin.category.store');
-    Route::get('/edit/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('admin.category.edit');
-    Route::post('/update/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('admin.category.update');
-    Route::post('/updateStatus', [App\Http\Controllers\Admin\CategoryController::class, 'updateStatus'])->name('admin.category.updateStatus');
-    Route::get('/delete/{id}', [App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('admin.category.delete');
-});
+        //----------------puja-------------- 
 
-//----------------puja-------------- 
+        Route::group(['prefix' => 'puja'], function () {
+            Route::get('/', [App\Http\Controllers\Admin\PujaController::class, 'index'])->name('puja.index');
+            Route::get('/create', [App\Http\Controllers\Admin\PujaController::class, 'create'])->name('puja.create');
+            Route::post('/store', [App\Http\Controllers\Admin\PujaController::class, 'store'])->name('puja.store');
+            Route::get('/edit/{id}', [App\Http\Controllers\Admin\PujaController::class, 'edit'])->name('puja.edit');
+            Route::post('/update/{id}', [App\Http\Controllers\Admin\PujaController::class, 'update'])->name('puja.update');
+            Route::post('/updateStatus', [App\Http\Controllers\Admin\PujaController::class, 'updateStatus'])->name('puja.updateStatus');
+            Route::get('/delete/{id}', [App\Http\Controllers\Admin\PujaController::class, 'destroy'])->name('puja.delete');
+        });
 
-Route::group(['prefix' => 'puja'], function () {
-    Route::get('/', [App\Http\Controllers\Admin\PujaController::class, 'index'])->name('admin.puja.index');
-    Route::get('/create', [App\Http\Controllers\Admin\PujaController::class, 'create'])->name('admin.puja.create');
-    Route::post('/store', [App\Http\Controllers\Admin\PujaController::class, 'store'])->name('admin.puja.store');
-    Route::get('/edit/{id}', [App\Http\Controllers\Admin\PujaController::class, 'edit'])->name('admin.puja.edit');
-    Route::post('/update/{id}', [App\Http\Controllers\Admin\PujaController::class, 'update'])->name('admin.puja.update');
-    Route::post('/updateStatus', [App\Http\Controllers\Admin\PujaController::class, 'updateStatus'])->name('admin.puja.updateStatus');
-    Route::get('/delete/{id}', [App\Http\Controllers\Admin\PujaController::class, 'destroy'])->name('admin.puja.delete');
-});
+        // ------------------puja-service-----------------
 
-// ------------------puja-service-----------------
+        Route::group(['prefix' => 'puja-service'], function () {
+            Route::get('/', [App\Http\Controllers\Admin\PujaServiceController::class, 'index'])->name('puja-service.index');
+            Route::get('/create', [App\Http\Controllers\Admin\PujaServiceController::class, 'create'])->name('puja-service.create');
+            Route::post('/store', [App\Http\Controllers\Admin\PujaServiceController::class, 'store'])->name('puja-service.store');
+            Route::get('/edit/{id}', [App\Http\Controllers\Admin\PujaServiceController::class, 'edit'])->name('puja-service.edit');
+            Route::post('/update/{id}', [App\Http\Controllers\Admin\PujaServiceController::class, 'update'])->name('puja-service.update');
+            Route::post('/updateStatus', [App\Http\Controllers\Admin\PujaServiceController::class, 'updateStatus'])->name('puja-service.updateStatus');
+            Route::get('/delete/{id}', [App\Http\Controllers\Admin\PujaServiceController::class, 'destroy'])->name('puja-service.delete');
+        });
 
-Route::group(['prefix' => 'puja-service'], function () {
-    Route::get('/', [App\Http\Controllers\Admin\PujaServiceController::class, 'index'])->name('admin.puja-service.index');
-    Route::get('/create', [App\Http\Controllers\Admin\PujaServiceController::class, 'create'])->name('admin.puja-service.create');
-    Route::post('/store', [App\Http\Controllers\Admin\PujaServiceController::class, 'store'])->name('admin.puja-service.store');
-    Route::get('/edit/{id}', [App\Http\Controllers\Admin\PujaServiceController::class, 'edit'])->name('admin.puja-service.edit');
-    Route::post('/update/{id}', [App\Http\Controllers\Admin\PujaServiceController::class, 'update'])->name('admin.puja-service.update');
-    Route::post('/updateStatus', [App\Http\Controllers\Admin\PujaServiceController::class, 'updateStatus'])->name('admin.puja-service.updateStatus');
-    Route::get('/delete/{id}', [App\Http\Controllers\Admin\PujaServiceController::class, 'destroy'])->name('admin.puja-service.delete');
-});
+        // -------------------banner-----------------
 
-// -------------------banner-----------------
+        Route::group(['prefix' => 'banner'], function () {
+            Route::get('/', [App\Http\Controllers\Admin\BannerController::class, 'index'])->name('banner.index');
+            Route::get('/create', [App\Http\Controllers\Admin\BannerController::class, 'create'])->name('banner.create');
+            Route::post('/store', [App\Http\Controllers\Admin\BannerController::class, 'store'])->name('banner.store');
+            Route::get('/edit/{id}', [App\Http\Controllers\Admin\BannerController::class, 'edit'])->name('banner.edit');
+            Route::post('/update/{id}', [App\Http\Controllers\Admin\BannerController::class, 'update'])->name('banner.update');
+            Route::post('/updateStatus', [App\Http\Controllers\Admin\BannerController::class, 'updateStatus'])->name('banner.updateStatus');
+            Route::get('/delete/{id}', [App\Http\Controllers\Admin\BannerController::class, 'destroy'])->name('banner.delete');
+        });
 
-Route::group(['prefix' => 'banner'], function () {
-    Route::get('/', [App\Http\Controllers\Admin\BannerController::class, 'index'])->name('admin.banner.index');
-    Route::get('/create', [App\Http\Controllers\Admin\BannerController::class, 'create'])->name('admin.banner.create');
-    Route::post('/store', [App\Http\Controllers\Admin\BannerController::class, 'store'])->name('admin.banner.store');
-    Route::get('/edit/{id}', [App\Http\Controllers\Admin\BannerController::class, 'edit'])->name('admin.banner.edit');
-    Route::post('/update/{id}', [App\Http\Controllers\Admin\BannerController::class, 'update'])->name('admin.banner.update');
-    Route::post('/updateStatus', [App\Http\Controllers\Admin\BannerController::class, 'updateStatus'])->name('admin.banner.updateStatus');
-    Route::get('/delete/{id}', [App\Http\Controllers\Admin\BannerController::class, 'destroy'])->name('admin.banner.delete');
-});
+        // --------------------content------------------
 
-// --------------------content------------------
+        Route::group(['prefix' => 'content'], function () {
+            Route::get('/', [App\Http\Controllers\Admin\ContentController::class, 'index'])->name('content.index');
+            Route::get('/create', [App\Http\Controllers\Admin\ContentController::class, 'create'])->name('content.create');
+            Route::post('/store', [App\Http\Controllers\Admin\ContentController::class, 'store'])->name('content.store');
+            Route::get('/edit/{id}', [App\Http\Controllers\Admin\ContentController::class, 'edit'])->name('content.edit');
+            Route::post('/update/{id}', [App\Http\Controllers\Admin\ContentController::class, 'update'])->name('content.update');
+            Route::post('/updateStatus', [App\Http\Controllers\Admin\ContentController::class, 'updateStatus'])->name('content.updateStatus');
+            Route::get('/delete/{id}', [App\Http\Controllers\Admin\ContentController::class, 'destroy'])->name('content.delete');
+        });
 
-Route::group(['prefix' => 'content'], function () {
-    Route::get('/', [App\Http\Controllers\Admin\ContentController::class, 'index'])->name('admin.content.index');
-    Route::get('/create', [App\Http\Controllers\Admin\ContentController::class, 'create'])->name('admin.content.create');
-    Route::post('/store', [App\Http\Controllers\Admin\ContentController::class, 'store'])->name('admin.content.store');
-    Route::get('/edit/{id}', [App\Http\Controllers\Admin\ContentController::class, 'edit'])->name('admin.content.edit');
-    Route::post('/update/{id}', [App\Http\Controllers\Admin\ContentController::class, 'update'])->name('admin.content.update');
-    Route::post('/updateStatus', [App\Http\Controllers\Admin\ContentController::class, 'updateStatus'])->name('admin.content.updateStatus');
-    Route::get('/delete/{id}', [App\Http\Controllers\Admin\ContentController::class, 'destroy'])->name('admin.content.delete');
-});
+        // ------------------customer-------------
 
-// ------------------customer-------------
+        Route::group(['prefix' => 'customer'], function () {
+            Route::get('/', [App\Http\Controllers\Admin\CustomerController::class, 'index'])->name('customer.index');
+            Route::get('/create', [App\Http\Controllers\Admin\CustomerController::class, 'create'])->name('customer.create');
+            Route::post('/store', [App\Http\Controllers\Admin\CustomerController::class, 'store'])->name('customer.store');
+            Route::get('/edit/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'edit'])->name('customer.edit');
+            Route::post('/update/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'update'])->name('customer.update');
+            Route::post('/updateStatus', [App\Http\Controllers\Admin\CustomerController::class, 'updateStatus'])->name('customer.updateStatus');
+            Route::get('/delete/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'destroy'])->name('customer.delete');
+        });
 
-Route::group(['prefix' => 'customer'], function () {
-    Route::get('/', [App\Http\Controllers\Admin\CustomerController::class, 'index'])->name('admin.customer.index');
-    Route::get('/create', [App\Http\Controllers\Admin\CustomerController::class, 'create'])->name('admin.customer.create');
-    Route::post('/store', [App\Http\Controllers\Admin\CustomerController::class, 'store'])->name('admin.customer.store');
-    Route::get('/edit/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'edit'])->name('admin.customer.edit');
-    Route::post('/update/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'update'])->name('admin.customer.update');
-    Route::post('/updateStatus', [App\Http\Controllers\Admin\CustomerController::class, 'updateStatus'])->name('admin.customer.updateStatus');
-    Route::get('/delete/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'destroy'])->name('admin.customer.delete');
-});
+        // -------------------Booking---------
 
-// -------------------Booking---------
+        Route::group(['prefix' => 'booking'], function () {
+            Route::get('/', [App\Http\Controllers\Admin\BookingController::class, 'index'])->name('booking.index');
+            Route::get('/details/{id}', [App\Http\Controllers\Admin\BookingController::class, 'show'])->name('booking.details');
 
-Route::group(['prefix' => 'booking'], function () {
-    Route::get('/', [App\Http\Controllers\Admin\BookingController::class, 'index'])->name('admin.booking.index');
-    Route::get('/details/{id}', [App\Http\Controllers\Admin\BookingController::class, 'show'])->name('admin.booking.details');
+            // Route::get('/create', [App\Http\Controllers\Admin\CustomerController::class, 'create'])->name('customer.create');
+            // Route::post('/store', [App\Http\Controllers\Admin\CustomerController::class, 'store'])->name('customer.store');
+            // Route::get('/edit/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'edit'])->name('customer.edit');
+            // Route::post('/update/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'update'])->name('customer.update');
+            // Route::post('/updateStatus', [App\Http\Controllers\Admin\CustomerController::class, 'updateStatus'])->name('customer.updateStatus');
+            // Route::get('/delete/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'destroy'])->name('customer.delete');
 
-    // Route::get('/create', [App\Http\Controllers\Admin\CustomerController::class, 'create'])->name('admin.customer.create');
-    // Route::post('/store', [App\Http\Controllers\Admin\CustomerController::class, 'store'])->name('admin.customer.store');
-    // Route::get('/edit/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'edit'])->name('admin.customer.edit');
-    // Route::post('/update/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'update'])->name('admin.customer.update');
-    // Route::post('/updateStatus', [App\Http\Controllers\Admin\CustomerController::class, 'updateStatus'])->name('admin.customer.updateStatus');
-    // Route::get('/delete/{id}', [App\Http\Controllers\Admin\CustomerController::class, 'destroy'])->name('admin.customer.delete');
+
+        });
+    });
+
+    // Route::get('/', function () {
+    //     return view('admin/dashboard');
+    // });
 
 
 });

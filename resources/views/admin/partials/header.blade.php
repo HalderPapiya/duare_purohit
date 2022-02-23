@@ -1,6 +1,8 @@
 <header class="app-header">
-    <!-- <a class="app-header__logo" href="#">{{ config('app.name') }}</a> -->
-    <a class="app-header__logo" href="#">Duare Purohit</a>
+    <a class="app-header__logo" href="#">
+    <img class="w-100" src="{{asset('img/image.png')}}">
+    </a>
+    {{-- <a class="app-header__logo" href="#">Duare Purohit</a> --}}
     <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
     <ul class="app-nav">
         <!-- <li class="app-search">
@@ -64,10 +66,11 @@
                 <li>
                     <a class="dropdown-item" href=""  onclick="event.preventDefault();
                          document.getElementById('logout-form').submit();"><i class="fa fa-sign-out fa-lg"></i> Logout</a>
-                         <form id="logout-form" action="" method="POST" class="d-none">
+                         <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
                 </li>
+               
             </ul>
         </li>
     </ul>
