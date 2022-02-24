@@ -8,40 +8,42 @@
             </a>
         </li> --}}
         <li>
-            <a class="app-menu__item" href="{{ route('admin.category.index') }}"><i class="app-menu__icon fa fa-group"></i>
+            <a class="app-menu__item category {{ request()->is('admin/category*') ? 'active' : '' }}" href="{{ route('admin.category.index') }}"><i class="app-menu__icon fa fa-group"></i>
                 <span class="app-menu__label">Category</span>
             </a>
         </li>
          <li>
-            <a class="app-menu__item" href="{{ route('admin.puja.index') }}"><i class="app-menu__icon fa fa-group"></i>
+            <a class="app-menu__item puja {{ request()->is('admin/puja*') ? 'active' : '' }}" href="{{ route('admin.puja.index') }}"><i class="app-menu__icon fa fa-group"></i>
                 <span class="app-menu__label">Puja</span>
             </a>
         </li>
         <li>
-            <a class="app-menu__item" href="{{ route('admin.puja-service.index') }}"><i class="app-menu__icon fa fa-group"></i>
+            <a class="app-menu__item puja-service {{ request()->is('admin/puja-service*') ? 'active' : '' }}" href="{{ route('admin.puja-service.index') }}"><i class="app-menu__icon fa fa-group"></i>
                 <span class="app-menu__label">Puja Service</span>
             </a>
         </li>
         <li>
-            <a class="app-menu__item" href="{{ route('admin.banner.index') }}"><i class="app-menu__icon fa fa-group"></i>
+            <a class="app-menu__item banner {{ request()->is('admin/banner*') ? 'active' : '' }}" href="{{ route('admin.banner.index') }}"><i class="app-menu__icon fa fa-group"></i>
                 <span class="app-menu__label">Banner</span>
             </a>
         </li>
          <li>
-            <a class="app-menu__item" href="{{ route('admin.content.index') }}"><i class="app-menu__icon fa fa-group"></i>
+            <a class="app-menu__item content {{ request()->is('admin/content*') ? 'active' : '' }}" href="{{ route('admin.content.index') }}"><i class="app-menu__icon fa fa-group"></i>
                 <span class="app-menu__label">Content</span>
             </a>
         </li>
         <li>
-            <a class="app-menu__item" href="{{ route('admin.customer.index') }}"><i class="app-menu__icon fa fa-group"></i>
+            <a class="app-menu__item customer {{ request()->is('admin/customer*') ? 'active' : '' }}" href="{{ route('admin.customer.index') }}"><i class="app-menu__icon fa fa-group"></i>
                 <span class="app-menu__label">Customer</span>
             </a>
         </li>
         <li>
-            <a class="app-menu__item" href="{{ route('admin.booking.index') }}"><i class="app-menu__icon fa fa-group"></i>
+            <a class="app-menu__item booking {{ request()->is('admin/booking*') ? 'active' : '' }}" href="{{ route('admin.booking.index') }}"><i class="app-menu__icon fa fa-group"></i>
                 <span class="app-menu__label">Booking Report</span>
             </a>
         </li>
+
+        
         {{--<li>
             <a class="app-menu__item {{ sidebar_open(['admin.users']) }}"
         href="{{ route('admin.users.index') }}"><i class="app-menu__icon fa fa-group"></i>
@@ -142,3 +144,14 @@
 
     </ul>
 </aside>
+
+<script>
+    $urlData = document.getElementsByClassName('app-menu__item');
+    $a = window.location.href;
+    console.log($a)
+    if($a.includes('banner')){
+        $urlData.add('active');
+    }else{
+        console.log('false')
+    }
+</script>
