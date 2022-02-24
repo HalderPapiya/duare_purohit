@@ -57,7 +57,7 @@
                                     <td class="text-center">
                                     
                                         <div class="btn-group" role="group" aria-label="Second group">
-                                            <a href="{{ url('content/edit', $content['id']) }}" class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></a>
+                                            <a href="{{ url('admin/content/edit', $content['id']) }}" class="btn btn-sm btn-primary edit-btn"><i class="fa fa-edit"></i></a>
                                             {{-- <a href="{{ route('admin.category.details', $category['id']) }}" class="btn btn-sm btn-primary edit-btn"><i class="fa fa-eye"></i></a> --}}
                                              <a href="javascript: void(0)" data-id="{{$content['id']}}" class="sa-remove btn btn-sm btn-danger edit-btn"><i class="fa fa-trash"></i></a>
                                         </div>
