@@ -27,6 +27,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         })->name('admin.dashboard');
         Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+
+        Route::get('admin/profile', [App\Http\Controllers\HomeController::class, 'userProfile'])->name('profile');
+        Route::post('admin/profile', [App\Http\Controllers\HomeController::class, 'userProfileSave'])->name('profile.save');
+        // Route::get('user/change/password','HomeController@changePassword')->name('user.changepassword');
+        Route::post('admin/change/password', [App\Http\Controllers\HomeController::class, 'updateUserPassword'])->name('changepassword.save');
+
         // ----------------category--------------
 
         Route::group(['prefix' => 'category'], function () {

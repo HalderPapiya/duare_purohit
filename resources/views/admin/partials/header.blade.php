@@ -61,7 +61,7 @@
             <a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu"><i class="fa fa-user fa-lg"></i>  <span><i class="treeview-indicator fa fa-angle-down" style="font-size: 15px;"></i></span></a>
             <ul class="dropdown-menu settings-menu dropdown-menu-right account-dropdown">
                 <li>
-                    <a class="dropdown-item" href=""><i class="fa fa-user fa-lg"></i> Profile</a>
+                    <a class="dropdown-item" href="{{ route('admin.profile') }}"><i class="fa fa-user fa-lg"></i> Profile</a>
                 </li>
                 <li>
                     <a class="dropdown-item" href=""  onclick="event.preventDefault();
