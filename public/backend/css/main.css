@@ -16989,3 +16989,9 @@ span.badge.badge-top {
 .ekko-lightbox-nav-overlay a:last-child {
     float: right;
 }
+
+.dash-card-col h5,
+.dash-card-col i,
+.dash-card-col p {
+    color: #f32402;
+}
