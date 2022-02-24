@@ -34,7 +34,7 @@
                                 <tr>
                                     <td>{{$key + 1}}</td>
                                     <td>{{ $booking->user->fName }}</td>
-                                    <td>{{ $booking->puja->name_in_english }}</td>
+                                    <td>{{ $booking->puja  ? $booking->puja->name_in_english : 'N/A' }}</td>
                                     <td>{{ $booking->amount }}</td>
                                     <td>{{ $booking->advance_amount }}</td>
                                     <td>{{ $booking->date }}</td>
