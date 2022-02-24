@@ -33,7 +33,7 @@
                                 <tr>
                                     <td>{{$key + 1}}</td>
                                     <td><img src="{{asset($puja->image)}}" width="60" /></td>
-                                    <td>{{ $puja->categoryDetail->name_in_english }}</td>
+                                    <td>{{ $puja->categoryDetail ? $puja->categoryDetail->name_in_english : 'N/A'}}</td>
                                     <td>{{ $puja->name_in_bengali }}</td>
                                     <td>{{ $puja->name_in_english }}</td>
                                     <td class="text-center">

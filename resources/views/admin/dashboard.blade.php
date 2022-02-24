@@ -19,7 +19,20 @@
     </div>
 </div>
     <div class="row section-mg row-md-body no-nav">
-       
+        <div class="col-md-3 dash-card-col">
+            <a href="{{route('admin.category.index')}}">
+                <div class="card card-body mb-0">
+                    <h5 class="mb-2">Category ({{count($data->categories)}})</h5>
+                    <p class="small mb-0">
+                        @foreach ($data->categories as $key=> $category)
+                            {{($loop->first ? '' : ', ').($category->name)}}
+                            @php if ($key == 2) {echo '...';break;} @endphp
+                        @endforeach
+                    </p>
+                    <i class="fas fa-list-alt"></i>
+                </div>
+            </a>
+        </div>
         {{-- <div class="col-md-6 col-lg-3">
             <div class="widget-small info coloured-icon">
             <i class="icon fa fa-files-o fa-3x"></i>
