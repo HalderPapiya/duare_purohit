@@ -19,7 +19,7 @@ class ServiceController extends BaseController
      */
     public function index()
     {
-        $categories = Puja::with('services')->where('status', '=', 1)->get();
+        $categories = PujaService::where('status', '=', 1)->get();
 
         return response()->json([
             "status" => 200,
