@@ -78,11 +78,18 @@ class UserController extends BaseController
             // 'pin' => $pin,
 
         ]);
-        return response()->json([
-            "status" => 200,
-            "data" => $user,
-            "message" => "Registration Succes",
-        ]);
+        if ($user) {
+            return response()->json([
+                "status" => 200,
+                "data" => $user,
+                "message" => "Registration Succes",
+            ]);
+        } else {
+            return response()->json([
+                "status" => 400,
+                "message" => "Registration unsuccessful",
+            ]);
+        }
     }
 
     public function login(Request $request)
