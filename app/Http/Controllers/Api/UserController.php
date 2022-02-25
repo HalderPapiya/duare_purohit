@@ -94,13 +94,20 @@ class UserController extends BaseController
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
+            $success['id'] =  $user->id;
             $success['name'] =  $user->name;
             return response()->json([
+                "data" => $user,
                 "status" => 200,
                 "message" => "Login Succesfully",
             ]);
         }
-        return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
+
+        return response()->json([
+            "status" => 400,
+            "message" => "Unauthorised",
+        ]);
+        // return $this->sendError('Unauthorised.', ["status" => 400, 'error' => 'Unauthorised']);
     }
 
     /**
