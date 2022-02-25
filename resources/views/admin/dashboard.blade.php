@@ -25,11 +25,11 @@
                     <h5 class="mb-2">Category ({{count($data->categories)}})</h5>
                     <p class="small mb-0">
                         @foreach ($data->categories as $key=> $category)
-                            {{($loop->first ? '' : ', ').($category->name)}}
+                            {{($loop->first ? '' : ', ').($category->name_in_english)}}
                             @php if ($key == 2) {echo '...';break;} @endphp
                         @endforeach
                     </p>
-                    <i class="fas fa-list-alt"></i>
+                    {{-- <i class="fas fa-list-alt app-menu__icon fa fa-group"></i> --}}
                 </div>
             </a>
         </div>
@@ -43,7 +43,7 @@
                             @php if ($key == 2) {echo '...';break;} @endphp
                         @endforeach
                     </p>
-                    <i class="fas fa-list-alt"></i>
+                    {{-- <i class="fas fa-list-alt"></i> --}}
                 </div>
             </a>
         </div>
@@ -57,7 +57,7 @@
                             @php if ($key == 2) {echo '...';break;} @endphp
                         @endforeach
                     </p>
-                    <i class="fas fa-list-alt"></i>
+                    {{-- <i class="fas fa-list-alt"></i> --}}
                 </div>
             </a>
         </div>
@@ -71,7 +71,7 @@
                             @php if ($key == 2) {echo '...';break;} @endphp
                         @endforeach
                     </p>
-                    <i class="fas fa-list-alt"></i>
+                    {{-- <i class="fas fa-list-alt"></i> --}}
                 </div>
             </a>
         </div>
@@ -79,13 +79,13 @@
             <a href="{{route('admin.booking.index')}}">
                 <div class="card card-body mb-0">
                     <h5 class="mb-2">Booking ({{count($data->bookings)}})</h5>
-                    {{-- <p class="small mb-0">
+                    <p class="small mb-0">
                         @foreach ($data->bookings as $key=> $booking)
                             {{($loop->first ? '' : ', ').( $booking->puja  ? $booking->puja->name_in_english : 'N/A')}}
                             @php if ($key == 2) {echo '...';break;} @endphp
                         @endforeach
-                    </p> --}}
-                    <i class="fas fa-list-alt"></i>
+                    </p>
+                    {{-- <i class="fas fa-list-alt"></i> --}}
                 </div>
             </a>
         </div>

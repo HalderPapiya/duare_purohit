@@ -50,7 +50,7 @@ class LoginController extends Controller
     {
         $request->validate([
             'email' => 'required | string | email | exists:admins',
-            'password' => 'required | string'
+            'password' => 'required | string | exists:admins'
         ]);
 
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
