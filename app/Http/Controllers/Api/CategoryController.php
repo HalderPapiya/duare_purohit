@@ -18,7 +18,7 @@ class CategoryController extends BaseController
      */
     public function index()
     {
-        $categories = Category::where('status', '=', 1)->get();
+        $categories = Category::with('puja')->where('status', '=', 1)->get();
 
         return response()->json([
             "status" => 200,
@@ -62,6 +62,21 @@ class CategoryController extends BaseController
      */
     public function show($id)
     {
+        $category = Category::with('puja')->find($id);
+
+        if (is_null($category)) {
+            return response()->json([
+                "data" => $category,
+                "status" => 200,
+                "message" => "Category details not found.",
+            ]);
+        }
+
+        return response()->json([
+            "data" => $category,
+            "status" => 200,
+            "message" => "User Details",
+        ]);
     }
 
     /**

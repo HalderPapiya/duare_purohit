@@ -30,6 +30,7 @@ Route::post('/user/change-password', [App\Http\Controllers\Api\UserController::c
 // --------------category-----------
 
 Route::get('/category/list', [App\Http\Controllers\Api\CategoryController::class, 'index']);
+Route::get('/category/details/{id}', [App\Http\Controllers\Api\CategoryController::class, 'show']);
 
 // --------------puja-----------
 Route::get('/puja/list', [App\Http\Controllers\Api\PujaController::class, 'index']);
