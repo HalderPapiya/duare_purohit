@@ -56,7 +56,12 @@ class LoginController extends Controller
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect()->intended('admin/dashboard');
         }
-        return back()->withInput($request->only('email', 'remember'));
+        // return redirect()->back()->withInput($request->only('email', 'remember'))->withErrors([
+        //     'approve' => 'Wrong password or this account not approved yet.',
+        // ]);
+        return back()->withInput($request->only('email', 'remember'))->withErrors([
+            'password' => 'Wrong password.',
+        ]);
     }
 
     public function logout(Request $request)
