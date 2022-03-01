@@ -50,6 +50,7 @@ class UserController extends BaseController
             'lName' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required',
+            'mobile' => 'required|digits:10|integer',
         ]);
 
         if ($validator->fails()) {
@@ -162,6 +163,7 @@ class UserController extends BaseController
             'id' => 'required',
             'fName' => 'required',
             'lName' => 'required',
+            'mobile' => 'required|digits:10|integer',
             // 'email' => 'required|email',
         ]);
 
