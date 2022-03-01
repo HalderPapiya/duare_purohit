@@ -60,7 +60,7 @@ class UserController extends BaseController
         $fName = $request->fName;
         $lName = $request->lName;
         $email    = $request->email;
-        // $mobile    = $request->mobile;
+        $mobile    = $request->mobile;
         $password = $request->password;
         // $address = $request->address;
         // $landmark = $request->landmark;
@@ -73,7 +73,7 @@ class UserController extends BaseController
             'password' => Hash::make($password),
             // 'address' => $address,
             // 'landmark' => $landmark,
-            // 'mobile' => $mobile,
+            'mobile' => $mobile,
             // 'city' => $city,
             // 'pin' => $pin,
 
