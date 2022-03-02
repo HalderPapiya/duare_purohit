@@ -24,6 +24,7 @@ class Booking extends Model
         'city',
         'landmark',
         'pin',
+        'mobile',
         'status',
         'is_paid',
         'transaction_id',

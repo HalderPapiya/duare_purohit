@@ -112,11 +112,11 @@ class BookingController extends BaseController
      */
     public function userWiseBookingList($id)
     {
-        $categories = Booking::where('userId', $id)->where('status', '=', 1)->get();
+        $data = Booking::where('userId', $id)->where('status', '=', 1)->get();
 
         return response()->json([
             "status" => 200,
-            "data" => $categories,
+            "data" => $data,
             "message" => "Booking List",
         ]);
     }

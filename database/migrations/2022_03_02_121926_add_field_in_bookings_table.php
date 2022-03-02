@@ -14,7 +14,7 @@ class AddFieldInBookingsTable extends Migration
     public function up()
     {
         Schema::table('bookings', function (Blueprint $table) {
-            $table->integer('mobile')->after('pin')->nullable();
+            $table->string('mobile')->after('pin')->nullable();
         });
     }
 
