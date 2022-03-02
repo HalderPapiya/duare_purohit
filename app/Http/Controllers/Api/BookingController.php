@@ -93,7 +93,7 @@ class BookingController extends BaseController
             'landmark' => $landmark,
             'city' => $city,
             'pin' => $pin,
-            'pin' => $mobile,
+            'mobile' => $mobile,
 
         ]);
         return response()->json([
