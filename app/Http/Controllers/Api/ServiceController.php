@@ -19,11 +19,11 @@ class ServiceController extends BaseController
      */
     public function index()
     {
-        $categories = PujaService::where('status', '=', 1)->get();
+        $data = PujaService::where('status', '=', 1)->get();
 
         return response()->json([
             "status" => 200,
-            "data" => $categories,
+            "data" => $data,
             "message" => "Service List",
         ]);
     }

@@ -15,13 +15,7 @@
                     <div class="tile-body">
                         <div class="form-group">
                             <label class="control-label" for="user_name"> User Name <span class="m-l-5 text-danger"> *</span></label>
-                            <input class="form-control" name="user_name" id="user_name" value="{{  $booking->user->fName .' ' . $booking->user->lName }}" readOnly/>
-                        </div>
-                    </div>
-                     <div class="tile-body">
-                        <div class="form-group">
-                            <label class="control-label" for="puja"> Puja <span class="m-l-5 text-danger"> *</span></label>
-                            <input class="form-control" name="puja" id="user_name" value="{{  $booking->puja->name_in_english }}" readOnly/>
+                            <input class="form-control" name="user_name" id="user_name" value="{{  $booking->user ? $booking->user->fName.' '.$booking->user->lName : 'N/A' }}" readOnly/>
                         </div>
                     </div>
                     <div class="tile-body">
@@ -82,6 +76,12 @@
                         <div class="form-group">
                             <label class="control-label" for="pin"> Pin<span class="m-l-5 text-danger"> *</span></label>
                             <input class="form-control" name="pin" id="pin" value="{{  $booking->pin }}" readOnly/>
+                        </div>
+                    </div>
+                    <div class="tile-body">
+                        <div class="form-group">
+                            <label class="control-label" for="mobile"> Mobile<span class="m-l-5 text-danger"> *</span></label>
+                            <input class="form-control" name="mobile" id="mobile" value="{{  $booking->mobile }}" readOnly/>
                         </div>
                     </div>
                     <div class="tile-body">

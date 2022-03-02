@@ -79,6 +79,7 @@ class BookingController extends BaseController
         $city = $request->city;
         $landmark = $request->landmark;
         $pin = $request->pin;
+        $mobile = $request->mobile;
         $booking     = booking::create([
             'uniqueId' => $uniqueId,
             'pujaId' => $pujaId,
@@ -92,6 +93,7 @@ class BookingController extends BaseController
             'landmark' => $landmark,
             'city' => $city,
             'pin' => $pin,
+            'pin' => $mobile,
 
         ]);
         return response()->json([

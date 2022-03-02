@@ -23,9 +23,9 @@
     <script src="{{ asset('backend/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('backend/js/main.js') }}"></script>
     <script src="{{ asset('backend/js/plugins/pace.min.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.9.5/tinymce.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/4.9.5/tinymce.min.js"></script> --}}
     <script>
-        tinymce.init({
+        /* tinymce.init({
             selector: "textarea:not(.detail_ad)",
             paste_data_images: true,
             height : "250",
@@ -53,7 +53,7 @@
                 });
               }
             },
-          });
+          }); */
     </script>
     <script type="text/javascript">
         jQuery( "#page_type" ).on('change',function() {

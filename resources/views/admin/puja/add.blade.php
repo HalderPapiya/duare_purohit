@@ -66,7 +66,7 @@ Puja
                     <div class="tile-body">
                         <div class="form-group">
                             <label class="control-label " for="description">Description <span class="m-l-5 text-danger"> *</span></label>
-                            <textarea class="form-control @error('description') is-invalid @enderror" name="description"  id="ckeditor" value="{{ old('description') }}"></textarea>
+                            <textarea class="form-control @error('description') is-invalid @enderror" name="description"  id="description"> {{ old('description') }}</textarea>
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message ?? '' }} </strong>
