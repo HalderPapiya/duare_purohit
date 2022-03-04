@@ -129,9 +129,9 @@ class BookingController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, $userId)
+    public function show($bookingId, $userId)
     {
-        $data = Booking::where('id', $id)->where('userId', $userId)->with('pujaDetails')->where('status', '=', 1)->get();
+        $data = Booking::where('id', $bookingId)->where('userId', $userId)->with('pujaDetails')->where('status', '=', 1)->get();
 
         return response()->json([
             "status" => 200,
