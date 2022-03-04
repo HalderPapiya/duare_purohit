@@ -42,6 +42,7 @@ Route::get('/puja/service/{id}', [App\Http\Controllers\Api\PujaController::class
 Route::post('/booking', [App\Http\Controllers\Api\BookingController::class, 'booking']);
 Route::get('/booking/list', [App\Http\Controllers\Api\BookingController::class, 'index']);
 Route::get('/booking/list/{userId}', [App\Http\Controllers\Api\BookingController::class, 'userWiseBookingList']);
+Route::get('/booking/details/{userId}/{id}', [App\Http\Controllers\Api\BookingController::class, 'show']);
 
 // ------------Banner-----------
 

@@ -35,8 +35,12 @@ class Booking extends Model
         return $this->belongsTo('App\Models\User', 'userId', 'id');
     }
 
-    public function puja()
+    public function pujaDetails()
     {
         return $this->belongsTo('App\Models\Puja', 'pujaId', 'id');
+    }
+    public function pujaName()
+    {
+        return $this->belongsTo('App\Models\Puja', 'puja_name', 'id');
     }
 }

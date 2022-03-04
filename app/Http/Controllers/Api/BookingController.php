@@ -114,7 +114,7 @@ class BookingController extends BaseController
      */
     public function userWiseBookingList($id)
     {
-        $data = Booking::where('userId', $id)->where('status', '=', 1)->get();
+        $data = Booking::where('userId', $id)->with('pujaDetails')->where('status', '=', 1)->get();
 
         return response()->json([
             "status" => 200,
@@ -129,8 +129,15 @@ class BookingController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, $userId)
     {
+        $data = Booking::where('id', $id)->where('userId', $userId)->with('pujaDetails')->where('status', '=', 1)->get();
+
+        return response()->json([
+            "status" => 200,
+            "data" => $data,
+            "message" => "Booking Details",
+        ]);
     }
 
     /**
